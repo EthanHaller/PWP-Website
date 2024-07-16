@@ -3,6 +3,10 @@ export default {
 	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
 		extend: {
+			colors: {
+				"neutral-darker": "#d1d5db",
+				"primary-neutral": "#a3b4d8",
+			},
 			fontFamily: {
 				sans: ["Montserrat", "ui-sans-serif", "system-ui"],
 			},
@@ -22,9 +26,8 @@ export default {
 					success: "#22c55e",
 					warning: "#f59e0b",
 					error: "#ef4444",
-					fontFamily: {
-						sans: ["Montserrat", "ui-sans-serif", "system-ui"],
-					},
+					"neutral-darker": "var(--neutral-darker)",
+					"primary-neutral": "var(--primary-neutral)",
 				},
 			},
 		],
