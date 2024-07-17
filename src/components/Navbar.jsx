@@ -7,10 +7,10 @@ const Navbar = () => {
 		<nav className="navbar absolute py-3 px-8 z-50">
 			<div className="avatar">
 				<div className="w-20 rounded">
-                    <NavLink
+					<NavLink
 						to="/"
 						className={({ isActive }) => {
-							return (isActive && "hidden")
+							return isActive ? "hidden" : ""
 						}}
 					>
 						<img src={logo} />
@@ -21,27 +21,27 @@ const Navbar = () => {
 				<div role="tablist" className="ml-auto tabs tabs-bordered font-bold">
 					<NavLink
 						to="/members"
-                        role="tab"
+						role="tab"
 						className={({ isActive }) => {
-							return (isActive && "tab-active") + " tab"
+							return (isActive ? "tab-active" : "") + " tab"
 						}}
 					>
 						Members
 					</NavLink>
 					<NavLink
 						to="/recruitment"
-                        role="tab"
+						role="tab"
 						className={({ isActive }) => {
-							return (isActive && "tab-active") + " tab"
+							return (isActive ? "tab-active" : "") + " tab"
 						}}
 					>
 						Recruitment
 					</NavLink>
 					<NavLink
 						to="/contact"
-                        role="tab"
+						role="tab"
 						className={({ isActive }) => {
-							return (isActive && "tab-active") + " tab"
+							return (isActive ? "tab-active" : "") + " tab"
 						}}
 					>
 						Contact
