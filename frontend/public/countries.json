@@ -793,7 +793,7 @@
 					"type": "Polygon",
 					"arcs": [[-173, 548, -270, -235, -107, -103]],
 					"id": "PER",
-					"properties": { "name": "Peru" }
+					"properties": { "name": "Peru", "isPreviousClient": true }
 				},
 				{
 					"type": "MultiPolygon",
@@ -1041,7 +1041,7 @@
 					"type": "Polygon",
 					"arcs": [[-436, 675, 676, -500, 677, 678, 679, 680, -221, -59, 681, -620, 682]],
 					"id": "TZA",
-					"properties": { "name": "Tanzania" }
+					"properties": { "name": "Tanzania", "isPreviousClient": true }
 				},
 				{
 					"type": "Polygon",
@@ -1221,7 +1221,7 @@
 					"type": "Polygon",
 					"arcs": [[754]],
 					"id": "DMA",
-					"properties": { "name": "Dominica" }
+					"properties": { "name": "Dominica", "isPreviousClient": true }
 				},
 				{
 					"type": "Polygon",
