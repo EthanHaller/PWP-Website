@@ -1,33 +1,37 @@
-import React from "react"
-import logo from "/pwp.svg"
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/weOthTmIZPF
+ * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ */
 import { FaSquareInstagram } from "react-icons/fa6"
 import { FaSquareFacebook } from "react-icons/fa6"
 import { FaLinkedin } from "react-icons/fa6"
 
-const Footer = () => {
+import { Link } from "react-router-dom"
+
+export default function Component() {
 	return (
-		<>
-			<footer className="footer bg-neutral text-neutral-content items-center p-8">
-				<aside className="grid-flow-col items-center">
-					<div className="w-24">
-						<img src={logo} />
-					</div>
-					<p className="px-4">Copyright © {new Date().getFullYear()} - All right reserved</p>
-				</aside>
-				<nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-					<a href="https://www.instagram.com/pwpatuva/" target="_blank">
-						<FaSquareInstagram size={40} className="text-primary" />
-					</a>
+		<footer className="py-6 w-full">
+			<div className="container max-w-7xl flex flex-col items-center justify-between gap-4 px-4 md:flex-row md:gap-0">
+				<div className="flex items-center gap-4">
+					<Link to="/" className="mr-6 hidden lg:flex">
+						<img src="pwp.svg" className="h-12" />
+						<span className="sr-only">Profit with Purpose</span>
+					</Link>
+					<p className="text-xs text-muted-foreground">&copy; {new Date().getFullYear()} - All right reserved.</p>
+				</div>
+				<div className="flex items-center gap-4">
 					<a href="https://www.facebook.com/pwpatuva/" target="_blank">
 						<FaSquareFacebook size={40} className="text-primary" />
+					</a>
+					<a href="https://www.instagram.com/pwpatuva/" target="_blank">
+						<FaSquareInstagram size={40} className="text-primary" />
 					</a>
 					<a href="https://www.linkedin.com/company/profit-with-purpose-at-uva/" target="_blank">
 						<FaLinkedin size={40} className="text-primary" />
 					</a>
-				</nav>
-			</footer>
-		</>
+				</div>
+			</div>
+		</footer>
 	)
 }
-
-export default Footer

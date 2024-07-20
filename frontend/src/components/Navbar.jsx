@@ -10,7 +10,7 @@ import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/compon
 
 export default function Navbar() {
 	return (
-		<header className="absolute flex h-20 w-full shrink-0 items-center px-4 md:px-6">
+		<header className="absolute flex h-20 w-full shrink-0 items-center px-4 md:px-6 z-50">
 			<Sheet>
 				<SheetTrigger asChild>
 					<Button variant="outline" size="icon" className="lg:hidden">
@@ -19,64 +19,60 @@ export default function Navbar() {
 					</Button>
 				</SheetTrigger>
 				<SheetContent side="left">
-					<Link href="#" prefetch={false}>
+					<Link to="/">
 						<img src="pwp.svg" className="h-12" />
-						<span className="sr-only">Profic with Purpose</span>
+						<span className="sr-only">Profit with Purpose</span>
 					</Link>
 					<div className="grid gap-2 py-6">
-						<Link href="#" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false}>
+						<Link to="/" className="flex w-full items-center py-2 text-lg font-semibold">
 							Home
 						</Link>
-						<Link href="#" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false}>
-							About
+						<Link to="/recruitment" className="flex w-full items-center py-2 text-lg font-semibold">
+							Recruitment
 						</Link>
-						<Link href="#" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false}>
-							Services
+						<Link to="/members" className="flex w-full items-center py-2 text-lg font-semibold">
+							Members
 						</Link>
-						<Link href="#" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false}>
+						<Link to="/contact" className="flex w-full items-center py-2 text-lg font-semibold">
 							Contact
 						</Link>
 					</div>
 				</SheetContent>
 			</Sheet>
-			<Link href="#" className="mr-6 hidden lg:flex" prefetch={false}>
+			<Link to="/" className="mr-6 hidden lg:flex">
 				<img src="pwp.svg" className="h-12" />
-				<span className="sr-only">Profic with Purpose</span>
+				<span className="sr-only">Profit with Purpose</span>
 			</Link>
-			<NavigationMenu className="hidden lg:flex">
+			<NavigationMenu className="hidden w-full lg:flex lg:justify-end">
 				<NavigationMenuList>
 					<NavigationMenuLink asChild>
 						<Link
-							href="#"
+							to="/"
 							className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-							prefetch={false}
 						>
 							Home
 						</Link>
 					</NavigationMenuLink>
 					<NavigationMenuLink asChild>
 						<Link
-							href="#"
+							to="/recruitment"
 							className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-							prefetch={false}
 						>
-							About
+							Recruitment
 						</Link>
 					</NavigationMenuLink>
 					<NavigationMenuLink asChild>
 						<Link
-							href="#"
+							to="/members"
 							className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-							prefetch={false}
 						>
-							Services
+							Members
 						</Link>
 					</NavigationMenuLink>
 					<NavigationMenuLink asChild>
 						<Link
-							href="#"
+							to='/contact'
 							className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-							prefetch={false}
 						>
 							Contact
 						</Link>
