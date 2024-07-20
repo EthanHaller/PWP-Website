@@ -18,16 +18,14 @@ const duplicatedLogos = [...logos, ...logos]
 
 const LogoSlider = () => {
 	return (
-		<div className="relative overflow-hidden container mx-auto">
-			<div className="whitespace-nowrap scroll">
+		<div className="bg-white relative overflow-hidden container mx-auto py-4">
+			<div className="scroll flex w-max">
 				{duplicatedLogos.map((logo, index) => (
-					<div key={index} className="inline-block px-6">
-						<img src={logo} alt={`Logo ${index + 1}`} className="h-32 object-contain" />
-					</div>
+					<img key={index} src={logo} alt={`Logo ${index}`} className="h-32 w-auto px-8" />
 				))}
 			</div>
-			<div className="absolute top-0 left-0 w-2/12 h-full blur-effect"></div>
-			<div className="absolute top-0 right-0 w-2/12 h-full blur-effect"></div>
+			<div className="absolute top-0 left-0 w-1/12 h-full blur-effect"></div>
+			<div className="absolute top-0 right-0 w-1/12 h-full blur-effect"></div>
 		</div>
 	)
 }
