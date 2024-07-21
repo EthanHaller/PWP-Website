@@ -4,6 +4,7 @@ const cors = require("cors")
 require("dotenv/config")
 
 // Local Modules
+const membersRouter = require("./routes/members.js")
 
 // Server Initialization
 const app = express()
@@ -27,8 +28,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // Routes will be written here
+app.use("/members", membersRouter)
 
-// Server Listen Along with Database
 // connection(in case of data persistence)
 app.listen(PORT, (error) => {
 	if (!error) {

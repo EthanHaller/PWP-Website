@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app"
-import { getStorage } from "firebase/storage"
+const { initializeApp } = require("firebase/app")
+const { getFirestore } = require("firebase/firestore")
 
 const firebaseConfig = {
 	apiKey: process.env.apiKey,
@@ -11,7 +11,7 @@ const firebaseConfig = {
 	measurementId: process.env.measurementId,
 }
 
-const app = initializeApp(firebaseConfig)
-const storage = getStorage(app)
+const firebase = initializeApp(firebaseConfig)
+const db = getFirestore(firebase)
 
-export { storage }
+module.exports = db
