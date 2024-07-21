@@ -5,7 +5,7 @@
  */
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/components/ui/navigation-menu"
 
 export default function Navbar() {
@@ -19,64 +19,62 @@ export default function Navbar() {
 					</Button>
 				</SheetTrigger>
 				<SheetContent side="left">
-					<Link to="/">
+					<NavLink to="/">
 						<img src="pwp.svg" className="h-12" />
 						<span className="sr-only">Profit with Purpose</span>
-					</Link>
+					</NavLink>
 					<div className="grid gap-2 py-6">
-						<Link to="/" className="flex w-full items-center py-2 text-lg font-semibold">
+						<NavLink to="/" className="flex w-full items-center py-2 text-lg font-semibold">
 							Home
-						</Link>
-						<Link to="/recruitment" className="flex w-full items-center py-2 text-lg font-semibold">
+						</NavLink>
+						<NavLink to="/recruitment" className="flex w-full items-center py-2 text-lg font-semibold">
 							Recruitment
-						</Link>
-						<Link to="/members" className="flex w-full items-center py-2 text-lg font-semibold">
+						</NavLink>
+						<NavLink to="/members" className="flex w-full items-center py-2 text-lg font-semibold">
 							Members
-						</Link>
-						<Link to="/contact" className="flex w-full items-center py-2 text-lg font-semibold">
+						</NavLink>
+						<NavLink to="/contact" className="flex w-full items-center py-2 text-lg font-semibold">
 							Contact
-						</Link>
+						</NavLink>
 					</div>
 				</SheetContent>
 			</Sheet>
-			<Link to="/" className="mr-6 hidden lg:flex">
+			<NavLink to="/" className={({ isActive }) => `mr-6 hidden lg:flex ${isActive ? "lg:hidden" : ""}`}>
 				<img src="pwp.svg" className="h-12" />
 				<span className="sr-only">Profit with Purpose</span>
-			</Link>
+			</NavLink>
 			<NavigationMenu className="hidden w-full lg:flex lg:justify-end">
 				<NavigationMenuList>
-					<NavigationMenuLink asChild>
-						<Link
-							to="/"
-							className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-						>
-							Home
-						</Link>
-					</NavigationMenuLink>
-					<NavigationMenuLink asChild>
-						<Link
-							to="/recruitment"
-							className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-						>
-							Recruitment
-						</Link>
-					</NavigationMenuLink>
-					<NavigationMenuLink asChild>
-						<Link
-							to="/members"
-							className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-						>
-							Members
-						</Link>
-					</NavigationMenuLink>
-					<NavigationMenuLink asChild>
-						<Link
-							to='/contact'
-							className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-						>
-							Contact
-						</Link>
-					</NavigationMenuLink>
+					<NavLink
+						to="/recruitment"
+						className={({ isActive }) => {
+							return isActive
+								? "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black hover:border-black hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+								: "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black/20 hover:border-black hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+						}}
+					>
+						Recruitment
+					</NavLink>
+					<NavLink
+						to="/members"
+						className={({ isActive }) => {
+							return isActive
+								? "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black hover:border-black hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+								: "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black/20 hover:border-black hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+						}}
+					>
+						Members
+					</NavLink>
+					<NavLink
+						to="/contact"
+						className={({ isActive }) => {
+							return isActive
+								? "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black hover:border-black hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+								: "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black/20 hover:border-black hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+						}}
+					>
+						Contact
+					</NavLink>
 				</NavigationMenuList>
 			</NavigationMenu>
 		</header>
@@ -100,26 +98,6 @@ function MenuIcon(props) {
 			<line x1="4" x2="20" y1="12" y2="12" />
 			<line x1="4" x2="20" y1="6" y2="6" />
 			<line x1="4" x2="20" y1="18" y2="18" />
-		</svg>
-	)
-}
-
-function XIcon(props) {
-	return (
-		<svg
-			{...props}
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="2"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-		>
-			<path d="M18 6 6 18" />
-			<path d="m6 6 12 12" />
 		</svg>
 	)
 }

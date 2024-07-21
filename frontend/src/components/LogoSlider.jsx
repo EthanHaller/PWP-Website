@@ -18,14 +18,15 @@ const duplicatedLogos = [...logos, ...logos]
 
 const LogoSlider = () => {
 	return (
-		<div className="bg-white relative overflow-hidden container mx-auto py-4">
+		<div className="bg-white relative overflow-hidden mx-auto pb-32">
+			<h2 className="text-center text-5xl my-16">Our Partners</h2>
 			<div className="scroll flex w-max">
 				{duplicatedLogos.map((logo, index) => (
-					<img key={index} src={logo} alt={`Logo ${index}`} className="h-32 w-auto px-8" />
+					<img key={index} src={logo} alt={`Logo ${index}`} className="h-24 w-auto px-8" />
 				))}
 			</div>
-			<div className="absolute top-0 left-0 w-1/12 h-full blur-effect"></div>
-			<div className="absolute top-0 right-0 w-1/12 h-full blur-effect"></div>
+
+
 		</div>
 	)
 }
