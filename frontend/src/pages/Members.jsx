@@ -1,198 +1,49 @@
 import React from "react"
 import Navbar from "../components/Navbar"
+import MemberCard from "../components/MemberCard"
+import { SkeletonCard } from "../components/SkeletonCard"
+import { useQuery } from "@tanstack/react-query"
+import axios from "axios"
+
+const fetchMembers = async () => {
+	const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/members`)
+	return response.data
+}
 
 const Members = () => {
-	const placeholder = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+	const { data, isLoading, isError, error } = useQuery({
+		queryKey: ["members"],
+		queryFn: fetchMembers,
+	})
+
+	if (isError) {
+		return <div>Error: {error.message}</div>
+	}
 
 	return (
 		<>
 			<Navbar />
-			<div className="container mx-auto p-4 text-center">
-				<h2 className="mt-32 mb-16 text-5xl">Executive Team</h2>
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-y-8">
-					<div className="text-left">
-						<div className="avatar h-96">
-							<div className="">
-								<img src={placeholder} />
-							</div>
-						</div>
-						<div className="flex">
-							<h3 className="text-lg font-bold pr-3">Name,</h3>
-							<h3 className="text-lg">Position</h3>
-						</div>
-						<p className="text-md">
-							ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor lacus
-							luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet
-						</p>
-					</div>
-					<div className="text-left">
-						<div className="avatar h-96">
-							<div className="">
-								<img src={placeholder} />
-							</div>
-						</div>
-						<div className="flex">
-							<h3 className="text-lg font-bold pr-3">Name,</h3>
-							<h3 className="text-lg">Position</h3>
-						</div>
-						<p className="text-md">
-							ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor lacus
-							luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet
-						</p>
-					</div>
-					<div className="text-left">
-						<div className="avatar h-96">
-							<div className="">
-								<img src={placeholder} />
-							</div>
-						</div>
-						<div className="flex">
-							<h3 className="text-lg font-bold pr-3">Name,</h3>
-							<h3 className="text-lg">Position</h3>
-						</div>
-						<p className="text-md">
-							ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor lacus
-							luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet
-						</p>
-					</div>
-					<div className="text-left">
-						<div className="avatar h-96">
-							<div className="">
-								<img src={placeholder} />
-							</div>
-						</div>
-						<div className="flex">
-							<h3 className="text-lg font-bold pr-3">Name,</h3>
-							<h3 className="text-lg">Position</h3>
-						</div>
-						<p className="text-md">
-							ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor lacus
-							luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet
-						</p>
-					</div>
-					<div className="text-left">
-						<div className="avatar h-96">
-							<div className="">
-								<img src={placeholder} />
-							</div>
-						</div>
-						<div className="flex">
-							<h3 className="text-lg font-bold pr-3">Name,</h3>
-							<h3 className="text-lg">Position</h3>
-						</div>
-						<p className="text-md">
-							ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor lacus
-							luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet
-						</p>
-					</div>
-					<div className="text-left">
-						<div className="avatar h-96">
-							<div className="">
-								<img src={placeholder} />
-							</div>
-						</div>
-						<div className="flex">
-							<h3 className="text-lg font-bold pr-3">Name,</h3>
-							<h3 className="text-lg">Position</h3>
-						</div>
-						<p className="text-md">
-							ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor lacus
-							luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet
-						</p>
-					</div>
+			<div className="container mx-auto p-4">
+				<h1 className="text-5xl font-bold text-center mt-16 mb-4">Members</h1>
+				<h2 className="text-xl font-semibold text-center mb-2">Executive Team</h2>
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto align-items-start justify-items-center">
+					{isLoading
+						? Array.from({ length: 8 }).map((_, index) => <SkeletonCard key={index} />)
+						: data.exec.map((member) => (
+								<MemberCard
+									key={member.id}
+									headshotUrl={member.headshotUrl}
+									name={member.name}
+									execRole={member.execRole}
+									about={member.about}
+								/>
+						  ))}
 				</div>
-				<h2 className="mt-32 mb-16 text-4xl">Members</h2>
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-y-8">
-					<div className="text-left">
-						<div className="avatar h-96">
-							<div className="">
-								<img src={placeholder} />
-							</div>
-						</div>
-						<div className="flex">
-							<h3 className="text-lg font-bold pr-3">Name,</h3>
-							<h3 className="text-lg">Position</h3>
-						</div>
-						<p className="text-md">
-							ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor lacus
-							luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet
-						</p>
-					</div>
-					<div className="text-left">
-						<div className="avatar h-96">
-							<div className="">
-								<img src={placeholder} />
-							</div>
-						</div>
-						<div className="flex">
-							<h3 className="text-lg font-bold pr-3">Name,</h3>
-							<h3 className="text-lg">Position</h3>
-						</div>
-						<p className="text-md">
-							ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor lacus
-							luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet
-						</p>
-					</div>
-					<div className="text-left">
-						<div className="avatar h-96">
-							<div className="">
-								<img src={placeholder} />
-							</div>
-						</div>
-						<div className="flex">
-							<h3 className="text-lg font-bold pr-3">Name,</h3>
-							<h3 className="text-lg">Position</h3>
-						</div>
-						<p className="text-md">
-							ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor lacus
-							luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet
-						</p>
-					</div>
-					<div className="text-left">
-						<div className="avatar h-96">
-							<div className="">
-								<img src={placeholder} />
-							</div>
-						</div>
-						<div className="flex">
-							<h3 className="text-lg font-bold pr-3">Name,</h3>
-							<h3 className="text-lg">Position</h3>
-						</div>
-						<p className="text-md">
-							ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor lacus
-							luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet
-						</p>
-					</div>
-					<div className="text-left">
-						<div className="avatar h-96">
-							<div className="">
-								<img src={placeholder} />
-							</div>
-						</div>
-						<div className="flex">
-							<h3 className="text-lg font-bold pr-3">Name,</h3>
-							<h3 className="text-lg">Position</h3>
-						</div>
-						<p className="text-md">
-							ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor lacus
-							luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet
-						</p>
-					</div>
-					<div className="text-left">
-						<div className="avatar h-96">
-							<div className="">
-								<img src={placeholder} />
-							</div>
-						</div>
-						<div className="flex">
-							<h3 className="text-lg font-bold pr-3">Name,</h3>
-							<h3 className="text-lg">Position</h3>
-						</div>
-						<p className="text-md">
-							ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor lacus
-							luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet
-						</p>
-					</div>
+				<h2 className="text-xl font-semibold text-center mt-8 mb-2">General Body</h2>
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto align-items-start justify-items-center">
+					{isLoading
+						? Array.from({ length: 8 }).map((_, index) => <SkeletonCard key={index} />)
+						: data.nonExec.map((member) => <MemberCard key={member.id} headshotUrl={member.headshotUrl} name={member.name} about={member.about} />)}
 				</div>
 			</div>
 		</>
