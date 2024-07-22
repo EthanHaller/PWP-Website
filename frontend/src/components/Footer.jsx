@@ -3,8 +3,8 @@
  * @see https://v0.dev/t/weOthTmIZPF
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import { FaSquareInstagram } from "react-icons/fa6"
-import { FaSquareFacebook } from "react-icons/fa6"
+import { FaInstagram } from "react-icons/fa6"
+import { FaFacebook } from "react-icons/fa6"
 import { FaLinkedin } from "react-icons/fa6"
 
 import { Link } from "react-router-dom"
@@ -22,10 +22,10 @@ export default function Component() {
 				</div>
 				<div className="flex items-center gap-4">
 					<a href="https://www.facebook.com/pwpatuva/" target="_blank">
-						<FaSquareFacebook size={40} className="text-primary" />
+						<FaFacebook size={35} className="text-primary" />
 					</a>
 					<a href="https://www.instagram.com/pwpatuva/" target="_blank">
-						<FaSquareInstagram size={40} className="text-primary" />
+						<FaInstagram size={40} className="text-primary" />
 					</a>
 					<a href="https://www.linkedin.com/company/profit-with-purpose-at-uva/" target="_blank">
 						<FaLinkedin size={40} className="text-primary" />

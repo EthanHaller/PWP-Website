@@ -11,11 +11,7 @@ const Home = () => {
 			<Navbar />
 			<Hero />
 			<LogoSlider />
-			<div className="min-h-screen">
-				<div className="max-w-screen-lg mx-auto relative">
-					<Map />
-				</div>
-			</div>
+			<Map />
 			<Footer />
 		</>
 	)

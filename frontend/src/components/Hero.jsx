@@ -6,7 +6,7 @@
 
 export default function Component() {
 	return (
-		<section className="w-full h-[80vh] relative">
+		<section className="w-full h-[70vh] relative">
 			<div className="absolute inset-0 bg-background/90 z-10" />
 			<div className="bg-[url(https://cdn.britannica.com/06/154006-050-3D5B38C6/Pavilions-Lawn-University-of-Virginia-Charlottesville.jpg)] bg-cover bg-center h-full" />
 			<div className="container max-w-6xl mx-auto px-4 md:px-6 space-y-6 absolute inset-0 z-20 flex flex-col md:flex-row items-center justify-center gap-x-8">
