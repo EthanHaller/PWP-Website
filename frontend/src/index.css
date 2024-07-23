@@ -25,6 +25,8 @@
 		--input: 225 27% 50%;
 		--ring: 225 63.4% 36.5%;
 		--radius: 0.5rem;
+		--success: 120 57% 40%;
+		--success-foreground: 0 0% 100%;
 	}
 }
 

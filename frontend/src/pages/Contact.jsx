@@ -1,16 +1,20 @@
 import React, { useState } from "react"
 import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
+import ContactForm from "../components/ContactForm"
+import axios from "axios"
+import { useToast } from "../components/ui/use-toast"
+import { Toaster } from "../components/ui/toaster"
 
-const ContactForm = () => {
+const Contact = () => {
+	const { toast } = useToast()
 	const [formValues, setFormValues] = useState({
 		name: "",
 		email: "",
 		subject: "",
 		message: "",
 	})
-
 	const [formErrors, setFormErrors] = useState({})
-	const [isSubmitted, setIsSubmitted] = useState(false)
 
 	const handleChange = (e) => {
 		const { name, value } = e.target
@@ -22,92 +26,49 @@ const ContactForm = () => {
 
 	const validate = () => {
 		let errors = {}
-		if (!formValues.name) errors.name = true
-		if (!formValues.email) errors.email = true
-		if (!formValues.subject) errors.subject = true
-		if (!formValues.message) errors.message = true
+		if (!formValues.name) errors.name = "Name is required"
+		if (!formValues.email) errors.email = "Email is required"
+		if (!formValues.subject) errors.subject = "Subject is required"
+		if (!formValues.message) errors.message = "Message is required"
 		return errors
 	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		setFormErrors(validate())
-		setIsSubmitted(true)
+		const errors = validate()
+		setFormErrors(errors)
+
+		if (Object.keys(errors).length !== 0) return
+		axios
+			.post(`${import.meta.env.VITE_BACKEND_URL}/contact/send`, formValues)
+			.then((res) => {
+				toast({
+					title: "Success",
+					description: "Email sent successfully!",
+					variant: "success",
+					duration: 2000,
+				})
+			})
+			.catch((err) => {
+				toast({
+					title: "Error",
+					description: err.message,
+					variant: "destructive",
+					duration: Infinity,
+				})
+			})
 	}
 
 	return (
 		<>
 			<Navbar />
-			<div className="flex justify-center items-center min-h-screen">
-				<div className="card w-full max-w-lg shadow-lg bg-white p-6 rounded-lg">
-					<h1 className="text-2xl font-bold mb-4">Get in Touch</h1>
-					<form onSubmit={handleSubmit}>
-						<label className="form-control w-full">
-							<div className="label">
-								<span className="label-text">Name*</span>
-								{formErrors.name && <span className="label-text-alt text-error">Required</span>}
-							</div>
-							<input
-								type="name"
-								name="name"
-								placeholder="Name"
-								className={`input input-bordered w-full ${formErrors.name && "input-error"}`}
-								value={formValues.name}
-								onChange={handleChange}
-							/>
-						</label>
-						<label className="form-control w-full">
-							<div className="label">
-								<span className="label-text">Email*</span>
-								{formErrors.email && <span className="label-text-alt text-error">Required</span>}
-							</div>
-							<input
-								type="email"
-								name="email"
-								placeholder="Email"
-								className={`input input-bordered w-full ${formErrors.email && "input-error"}`}
-								value={formValues.email}
-								onChange={handleChange}
-							/>
-						</label>
-						<label className="form-control w-full">
-							<div className="label">
-								<span className="label-text">Subject*</span>
-								{formErrors.subject && <span className="label-text-alt text-error">Required</span>}
-							</div>
-							<input
-								type="subject"
-								name="subject"
-								placeholder="Subject"
-								className={`input input-bordered w-full ${formErrors.subject && "input-error"}`}
-								value={formValues.subject}
-								onChange={handleChange}
-							/>
-						</label>
-						<label className="form-control w-full">
-							<div className="label">
-								<span className="label-text">Message*</span>
-								{formErrors.message && <span className="label-text-alt text-error">Required</span>}
-							</div>
-							<input
-								type="message"
-								name="message"
-								placeholder="Message"
-								className={`input input-bordered w-full ${formErrors.message && "input-error"}`}
-								value={formValues.message}
-								onChange={handleChange}
-							/>
-						</label>
-						<div className="form-control mt-6">
-							<button type="submit" className="btn btn-primary w-full">
-								Send Message
-							</button>
-						</div>
-					</form>
-				</div>
+			<div className="flex pt-32 mb-8">
+				<ContactForm onSubmit={handleSubmit} errors={formErrors} values={formValues} onChange={handleChange} />
 			</div>
+			<Toaster />
+			<Footer />
 		</>
 	)
 }
 
-export default ContactForm
+export default Contact
