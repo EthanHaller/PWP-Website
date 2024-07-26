@@ -6,15 +6,16 @@
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { NavLink } from "react-router-dom"
-import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/components/ui/navigation-menu"
+import { NavigationMenu, NavigationMenuList } from "@/components/ui/navigation-menu"
+import { IoMenu } from "react-icons/io5";
 
 export default function Navbar() {
 	return (
 		<header className="absolute flex h-20 w-full shrink-0 items-center px-4 md:px-6 z-50">
 			<Sheet>
 				<SheetTrigger asChild>
-					<Button variant="outline" size="icon" className="md:hidden">
-						<MenuIcon className="h-6 w-6" />
+					<Button variant="ghost" size="icon" className="md:hidden text-primary">
+						<IoMenu size={32} className="text-primary" />
 						<span className="sr-only">Toggle navigation menu</span>
 					</Button>
 				</SheetTrigger>

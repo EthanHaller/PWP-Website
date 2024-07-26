@@ -102,3 +102,11 @@
 	bottom: 8%;
 	z-index: -1;
 }
+
+.parallax {
+	background-image: url('https://cdn.britannica.com/06/154006-050-3D5B38C6/Pavilions-Lawn-University-of-Virginia-Charlottesville.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+  }

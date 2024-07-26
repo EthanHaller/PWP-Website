@@ -12,7 +12,7 @@ const Recruitment = () => {
 			<h1 className="text-primary font-bold md:hidden absolute top-8 right-8 z-50">Recruitment</h1>
 			<div className="w-full h-[80vh] relative">
 				<div className="absolute inset-0 bg-background/90 z-10" />
-				<div className="bg-[url('https://cdn.britannica.com/06/154006-050-3D5B38C6/Pavilions-Lawn-University-of-Virginia-Charlottesville.jpg')] bg-cover bg-center h-full" />
+				<div className="parallax h-full" />
 				<div className="h-full absolute container mx-auto px-4 md:px-6 inset-0 z-20 flex items-center">
 					<h2 className="xl:text-5xl xl:leading-[6rem] lg:text-4xl lg:leading-[5rem] text-3xl leading-[4rem] p-4 pt-16 uppercase">
 						How can you <span className="font-bold highlight">invest</span> in the <span className="font-bold highlight">creative capacity</span> of{" "}
@@ -78,15 +78,17 @@ const Recruitment = () => {
 				</div>
 			</div>
 			<div className="flex flex-col items-center mt-8 mb-16">
-				<h2 className="font-bold text-4xl mb-8">Interested in Joining?</h2>
+				<h2 className="font-bold text-4xl mb-8">Interested in joining?</h2>
 				<Button>
 					<a
+						target="_blank"
 						className="text-xl px-8"
 						href="https://docs.google.com/forms/d/e/1FAIpQLScpZUqi7rGQbq9UFfS1Abc8jkhdpKs0mws9XkzkfRahAD1iYw/viewform?usp=sf_link"
 					>
 						Fill out our interest form!
 					</a>
 				</Button>
+				<p className="mt-4 text-xs text-muted-foreground">Updated Fall 2024</p>
 			</div>
 			<Footer />
 		</>

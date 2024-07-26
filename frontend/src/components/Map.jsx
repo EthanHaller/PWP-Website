@@ -23,8 +23,8 @@ const Map = () => {
 
 	return (
 		<>
-			<div className="min-h-screen">
-        <h2 className="text-center text-3xl mt-16">Our Global Presence</h2>
+			<div className="">
+				<h2 className="text-center text-3xl mt-16">Our Global Presence</h2>
 				<div className="max-w-screen-lg mx-auto relative">
 					<TooltipProvider delayDuration={0}>
 						<Tooltip>
