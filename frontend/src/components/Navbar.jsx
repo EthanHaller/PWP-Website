@@ -13,7 +13,7 @@ export default function Navbar() {
 		<header className="absolute flex h-20 w-full shrink-0 items-center px-4 md:px-6 z-50">
 			<Sheet>
 				<SheetTrigger asChild>
-					<Button variant="outline" size="icon" className="lg:hidden">
+					<Button variant="outline" size="icon" className="md:hidden">
 						<MenuIcon className="h-6 w-6" />
 						<span className="sr-only">Toggle navigation menu</span>
 					</Button>
@@ -39,18 +39,18 @@ export default function Navbar() {
 					</div>
 				</SheetContent>
 			</Sheet>
-			<NavLink to="/" className={({ isActive }) => `mr-6 hidden lg:flex ${isActive ? "lg:hidden" : ""}`}>
-				<img src="pwp.svg" className="h-12" />
+			<NavLink to="/" className={({ isActive }) => `mr-6 hidden md:flex ${isActive ? "md:hidden" : ""}`}>
+				<img src="pwp.svg" className="h-16" />
 				<span className="sr-only">Profit with Purpose</span>
 			</NavLink>
-			<NavigationMenu className="hidden w-full lg:flex lg:justify-end">
+			<NavigationMenu className="hidden w-full md:flex md:justify-end">
 				<NavigationMenuList>
 					<NavLink
 						to="/recruitment"
 						className={({ isActive }) => {
 							return isActive
-								? "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black hover:border-black hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-								: "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black/20 hover:border-black hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+								? "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-bold transition-border border-b-2 border-primary hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+								: "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black/20 hover:border-primary hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
 						}}
 					>
 						Recruitment
@@ -59,8 +59,8 @@ export default function Navbar() {
 						to="/members"
 						className={({ isActive }) => {
 							return isActive
-								? "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black hover:border-black hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-								: "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black/20 hover:border-black hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+								? "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-bold transition-border border-b-2 border-primary hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+								: "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black/20 hover:border-primary hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
 						}}
 					>
 						Members
@@ -69,8 +69,8 @@ export default function Navbar() {
 						to="/contact"
 						className={({ isActive }) => {
 							return isActive
-								? "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black hover:border-black hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-								: "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black/20 hover:border-black hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+								? "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-bold transition-border border-b-2 border-primary hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+								: "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black/20 hover:border-primary hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
 						}}
 					>
 						Contact

@@ -24,10 +24,11 @@ const Members = () => {
 	return (
 		<>
 			<Navbar />
+			<h1 className="text-primary font-bold md:hidden absolute top-8 right-8 z-50">Members</h1>
 			<div className="container mx-auto p-4 mb-8">
 				<h1 className="text-5xl font-bold text-center mt-16 mb-4">Members</h1>
 				<h2 className="text-xl font-semibold text-center mb-2">Executive Team</h2>
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto align-items-start justify-items-center">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mx-auto align-items-start justify-items-center">
 					{isLoading
 						? Array.from({ length: 8 }).map((_, index) => <SkeletonCard key={index} />)
 						: data.exec
@@ -43,7 +44,7 @@ const Members = () => {
 								))}
 				</div>
 				<h2 className="text-xl font-semibold text-center mt-8 mb-2">General Body</h2>
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto align-items-start justify-items-center">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mx-auto align-items-start justify-items-center">
 					{isLoading
 						? Array.from({ length: 8 }).map((_, index) => <SkeletonCard key={index} />)
 						: data.nonExec

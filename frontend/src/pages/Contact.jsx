@@ -62,6 +62,7 @@ const Contact = () => {
 	return (
 		<>
 			<Navbar />
+			<h1 className="text-primary font-bold md:hidden absolute top-8 right-8 z-50">Contact</h1>
 			<div className="flex pt-32 mb-8">
 				<ContactForm onSubmit={handleSubmit} errors={formErrors} values={formValues} onChange={handleChange} />
 			</div>

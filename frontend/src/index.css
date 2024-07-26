@@ -84,3 +84,21 @@
 .blur-effect:nth-child(3) {
 	background: linear-gradient(to left, hsl(225, 27%, 95%), transparent);
 }
+
+.highlight {
+	position: relative;
+	display: inline-block;
+}
+
+.highlight::after {
+	display: flex;
+	position: absolute;
+	content: "";
+	background-color: hsl(225, 63.4%, 36.5%);
+	opacity: .3;
+	width: calc(100% + 4px);
+	height: 40%;
+	left: -2px;
+	bottom: 8%;
+	z-index: -1;
+}
