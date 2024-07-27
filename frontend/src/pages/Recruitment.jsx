@@ -30,7 +30,7 @@ const Recruitment = () => {
 							<h3 className="text-xl font-bold">About Us</h3>
 						</CardHeader>
 						<CardContent>
-							<p className="text-gray-700">
+							<p className="text-muted-foreground">
 								At Profit with Purpose, we build a community of undergraduate students who can understand, identify, and begin careers in impact
 								investing and consulting.
 							</p>
@@ -43,7 +43,7 @@ const Recruitment = () => {
 							<h3 className="text-xl font-bold">Our Approach</h3>
 						</CardHeader>
 						<CardContent>
-							<p className="text-gray-700">
+							<p className="text-muted-foreground">
 								We do this through our hands-on training curriculum, professional mentors, and pro-bono consulting for domestic and
 								international companies that embody ESG standards.
 							</p>
@@ -56,9 +56,9 @@ const Recruitment = () => {
 							<h3 className="text-xl font-bold">Our Mission</h3>
 						</CardHeader>
 						<CardContent>
-							<p className="text-gray-700">
+							<p className="text-muted-foreground">
 								We're building an ecosystem where students from any background can learn, up-skill, and access opportunities in impact
-								investing.
+								investing and consulting.
 							</p>
 						</CardContent>
 					</Card>
@@ -69,7 +69,7 @@ const Recruitment = () => {
 							<h3 className="text-xl font-bold">Who We Recruit</h3>
 						</CardHeader>
 						<CardContent>
-							<p className="text-gray-700">
+							<p className="text-muted-foreground">
 								We recruit students from all years, majors, and backgrounds to facilitate consulting projects and investment strategies from
 								unique perspectives.
 							</p>

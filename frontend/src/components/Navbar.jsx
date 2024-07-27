@@ -28,6 +28,9 @@ export default function Navbar() {
 						<NavLink to="/" className="flex w-full items-center py-2 text-lg font-semibold">
 							Home
 						</NavLink>
+						<NavLink to="/portfolio" className="flex w-full items-center py-2 text-lg font-semibold">
+							Portfolio
+						</NavLink>
 						<NavLink to="/recruitment" className="flex w-full items-center py-2 text-lg font-semibold">
 							Recruitment
 						</NavLink>
@@ -41,11 +44,21 @@ export default function Navbar() {
 				</SheetContent>
 			</Sheet>
 			<NavLink to="/" className={({ isActive }) => `mr-6 hidden md:flex ${isActive ? "md:hidden" : ""}`}>
-				<img src="pwp.svg" className="h-16" />
+				<img src="pwp.svg" className="h-14" />
 				<span className="sr-only">Profit with Purpose</span>
 			</NavLink>
 			<NavigationMenu className="hidden w-full md:flex md:justify-end">
 				<NavigationMenuList>
+					<NavLink
+						to="/portfolio"
+						className={({ isActive }) => {
+							return isActive
+								? "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-bold transition-border border-b-2 border-primary hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+								: "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black/20 hover:border-primary hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+						}}
+					>
+						Portfolio
+					</NavLink>
 					<NavLink
 						to="/recruitment"
 						className={({ isActive }) => {

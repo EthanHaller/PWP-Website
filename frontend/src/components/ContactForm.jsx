@@ -9,7 +9,7 @@ export default function ContactForm({ onSubmit, errors, values, onChange }) {
 		<Card className="w-full max-w-md mx-auto">
 			<CardHeader>
 				<CardTitle>Get in Touch</CardTitle>
-				<CardDescription>Fill out the form below to send us a message.</CardDescription>
+				<CardDescription>Fill out the form below to send us a message!</CardDescription>
                 {Object.keys(errors).length > 0 && <p className="text-xs text-red-500">All fields are required.</p>}
 			</CardHeader>
 			<CardContent>
