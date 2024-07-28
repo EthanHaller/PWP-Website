@@ -1,7 +1,7 @@
 var express = require("express")
 var router = express.Router()
 const { collection, getDocs, doc, getDoc } = require("firebase/firestore")
-const db = require("../firebaseConfig")
+const { db } = require("../firebaseConfig")
 
 const getProjects = async (req, res) => {
 	try {

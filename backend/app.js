@@ -7,6 +7,7 @@ require("dotenv/config")
 const membersRouter = require("./routes/members.js")
 const contactRouter = require("./routes/contact")
 const projectsRouter = require("./routes/projects")
+const adminRouter = require("./routes/admin")
 
 // Server Initialization
 const app = express()
@@ -33,6 +34,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use("/members", membersRouter)
 app.use("/contact", contactRouter)
 app.use("/projects", projectsRouter)
+app.use("/admin", adminRouter)
 
 // connection(in case of data persistence)
 app.listen(PORT, (error) => {

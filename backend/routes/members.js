@@ -1,7 +1,7 @@
 var express = require("express")
 var router = express.Router()
 const { collection, getDocs, addDoc, updateDoc, doc } = require("firebase/firestore")
-const db = require("../firebaseConfig")
+const { db } = require("../firebaseConfig")
 
 const addMember = async (req, res) => {
 	try {
@@ -21,7 +21,7 @@ const getMembers = async (req, res) => {
 		const querySnapshot = await getDocs(membersCollection)
 		const exec = []
 		const nonExec = []
-        const totalCount = querySnapshot.size
+		const totalCount = querySnapshot.size
 
 		querySnapshot.forEach((doc) => {
 			const member = { id: doc.id, ...doc.data() }

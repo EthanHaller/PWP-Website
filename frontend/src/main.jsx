@@ -9,6 +9,10 @@ import Members from "./pages/Members"
 import Contact from "./pages/Contact"
 import Project from "./pages/Project"
 import Layout from "./components/Layout"
+import Login from "./pages/admin/Login"
+import Dashboard from "./pages/admin/Dashboard"
+import ProtectedRoute from "./components/ProtectedRoute"
+import { AuthProvider } from "./context/AuthContext"
 import "./index.css"
 
 const router = createBrowserRouter([
@@ -41,6 +45,24 @@ const router = createBrowserRouter([
 			},
 		],
 	},
+	{
+		path: "/admin",
+		children: [
+			{
+				path: "",
+				element: <Login />,
+			},
+			{
+				element: <ProtectedRoute />,
+				children: [
+					{
+						path: "dashboard",
+						element: <Dashboard />,
+					},
+				],
+			},
+		],
+	},
 ])
 
 const queryClient = new QueryClient()
@@ -48,7 +70,9 @@ const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<QueryClientProvider client={queryClient}>
-			<RouterProvider router={router} />
+			<AuthProvider>
+				<RouterProvider router={router} />
+			</AuthProvider>
 		</QueryClientProvider>
 	</React.StrictMode>
 )
