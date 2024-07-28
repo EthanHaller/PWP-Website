@@ -1,6 +1,4 @@
 import React, { useState } from "react"
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import ContactForm from "../components/ContactForm"
 import axios from "axios"
 import { useToast } from "../components/ui/use-toast"
@@ -61,13 +59,11 @@ const Contact = () => {
 
 	return (
 		<>
-			<Navbar />
 			<h1 className="text-primary font-bold md:hidden absolute top-8 right-8 z-50">Contact</h1>
 			<div className="flex pt-32 mb-8">
 				<ContactForm onSubmit={handleSubmit} errors={formErrors} values={formValues} onChange={handleChange} />
 			</div>
 			<Toaster />
-			<Footer />
 		</>
 	)
 }

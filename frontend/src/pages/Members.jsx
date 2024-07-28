@@ -1,6 +1,4 @@
 import React from "react"
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import MemberCard from "../components/MemberCard"
 import { SkeletonCard } from "../components/SkeletonCard"
 import { useQuery } from "@tanstack/react-query"
@@ -23,7 +21,6 @@ const Members = () => {
 
 	return (
 		<>
-			<Navbar />
 			<h1 className="text-primary font-bold md:hidden absolute top-8 right-8 z-50">Members</h1>
 			<div className="container mx-auto p-4 mb-8">
 				<h1 className="text-5xl font-bold mt-32 mb-8">Members</h1>
@@ -48,7 +45,6 @@ const Members = () => {
 								.map((member) => <MemberCard key={member.id} headshotUrl={member.headshotUrl} name={member.name} about={member.about} />)}
 				</div>
 			</div>
-			<Footer />
 		</>
 	)
 }

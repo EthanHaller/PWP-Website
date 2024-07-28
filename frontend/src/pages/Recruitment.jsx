@@ -1,14 +1,11 @@
 import React from "react"
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
-import { FaStar, FaTools, FaGlobe, FaGraduationCap } from "react-icons/fa"
+import { FaStar, FaTools, FaGlobeAmericas, FaGraduationCap } from "react-icons/fa"
 import { Card, CardHeader, CardContent } from "../components/ui/card"
 import { Button } from "../components/ui/button"
 
 const Recruitment = () => {
 	return (
 		<>
-			<Navbar />
 			<h1 className="text-primary font-bold md:hidden absolute top-8 right-8 z-50">Recruitment</h1>
 			<div className="w-full h-[80vh] relative">
 				<div className="absolute inset-0 bg-background/90 z-10" />
@@ -52,13 +49,13 @@ const Recruitment = () => {
 
 					<Card className="py-6 px-2 bg-white shadow-md rounded-md">
 						<CardHeader className="flex items-center mb-4">
-							<FaGlobe size={40} className="text-primary" />
+							<FaGlobeAmericas size={40} className="text-primary" />
 							<h3 className="text-xl font-bold">Our Mission</h3>
 						</CardHeader>
 						<CardContent>
 							<p className="text-muted-foreground">
-								We're building an ecosystem where students from any background can learn, up-skill, and access opportunities in impact
-								investing and consulting.
+								We're building an ecosystem where students from any background can learn, up-skill, and access opportunities in impact investing
+								and consulting.
 							</p>
 						</CardContent>
 					</Card>
@@ -90,7 +87,6 @@ const Recruitment = () => {
 				</Button>
 				<p className="mt-4 text-xs text-muted-foreground">Updated Fall 2024</p>
 			</div>
-			<Footer />
 		</>
 	)
 }
