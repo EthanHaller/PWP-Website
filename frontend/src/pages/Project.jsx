@@ -28,12 +28,12 @@ const Project = () => {
 			<div className="container mx-auto px-4 md:px-6 pt-24 py-12">
 				<div className="flex items-center mb-4">
 					<Link to="/portfolio">
-						<Button variant="link" className="text-xl">
+						<Button variant="link" className="text-lg md:text-xl">
 							Portfolio
 						</Button>
 					</Link>
 					<FaChevronRight />
-					{isLoading ? <Skeleton /> : <h1 className="text-xl mx-4">{data.title}</h1>}
+					{isLoading ? <Skeleton /> : <h1 className="text-lg md:text-xl mx-4">{data.title}</h1>}
 				</div>
 				{isLoading ? <Skeleton className="w-full h-[75vh]"></Skeleton> : <iframe src={data.presentationUrl} className="w-full h-[75vh]" />}
 			</div>

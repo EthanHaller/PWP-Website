@@ -11,7 +11,7 @@ const Recruitment = () => {
 				<div className="absolute inset-0 bg-background/90 z-10" />
 				<div className="parallax h-full" />
 				<div className="h-full absolute container mx-auto px-4 md:px-6 inset-0 z-20 flex items-center">
-					<h2 className="xl:text-5xl xl:leading-[6rem] lg:text-4xl lg:leading-[5rem] text-3xl leading-[4rem] p-4 pt-16 uppercase">
+					<h2 className="xl:text-5xl xl:leading-[6rem] lg:text-4xl lg:leading-[5rem] sm:text-2xl sm:leading-[4rem] xs:text-xl leading-[3rem] p-4 pt-16 uppercase">
 						How can you <span className="font-bold highlight">invest</span> in the <span className="font-bold highlight">creative capacity</span> of{" "}
 						<span className="font-bold highlight">entrepreneurs</span> solving our world's most{" "}
 						<span className="font-bold highlight">pressing social issues</span> without sacrificing{" "}

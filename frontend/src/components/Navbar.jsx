@@ -1,43 +1,44 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/Z3AvsEt4DA4
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+import React, { useState } from "react"
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { NavLink } from "react-router-dom"
 import { NavigationMenu, NavigationMenuList } from "@/components/ui/navigation-menu"
-import { IoMenu } from "react-icons/io5";
+import { IoMenu } from "react-icons/io5"
 
 export default function Navbar() {
+	const [isSheetOpen, setIsSheetOpen] = useState(false)
+
+	const openSheet = () => setIsSheetOpen(true)
+	const closeSheet = () => setIsSheetOpen(false)
+
 	return (
 		<header className="absolute flex h-20 w-full shrink-0 items-center px-4 md:px-6 z-50">
-			<Sheet>
+			<Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
 				<SheetTrigger asChild>
-					<Button variant="ghost" size="icon" className="md:hidden text-primary">
+					<Button variant="ghost" size="icon" className="md:hidden text-primary" onClick={openSheet}>
 						<IoMenu size={32} className="text-primary" />
 						<span className="sr-only">Toggle navigation menu</span>
 					</Button>
 				</SheetTrigger>
 				<SheetContent side="left">
-					<NavLink to="/">
+					<NavLink to="/" onClick={closeSheet}>
 						<img src="pwp.svg" className="h-12" />
 						<span className="sr-only">Profit with Purpose</span>
 					</NavLink>
 					<div className="grid gap-2 py-6">
-						<NavLink to="/" className="flex w-full items-center py-2 text-lg font-semibold">
+						<NavLink to="/" className="flex w-full items-center py-2 text-lg font-semibold" onClick={closeSheet}>
 							Home
 						</NavLink>
-						<NavLink to="/portfolio" className="flex w-full items-center py-2 text-lg font-semibold">
+						<NavLink to="/portfolio" className="flex w-full items-center py-2 text-lg font-semibold" onClick={closeSheet}>
 							Portfolio
 						</NavLink>
-						<NavLink to="/recruitment" className="flex w-full items-center py-2 text-lg font-semibold">
+						<NavLink to="/recruitment" className="flex w-full items-center py-2 text-lg font-semibold" onClick={closeSheet}>
 							Recruitment
 						</NavLink>
-						<NavLink to="/members" className="flex w-full items-center py-2 text-lg font-semibold">
+						<NavLink to="/members" className="flex w-full items-center py-2 text-lg font-semibold" onClick={closeSheet}>
 							Members
 						</NavLink>
-						<NavLink to="/contact" className="flex w-full items-center py-2 text-lg font-semibold">
+						<NavLink to="/contact" className="flex w-full items-center py-2 text-lg font-semibold" onClick={closeSheet}>
 							Contact
 						</NavLink>
 					</div>
@@ -92,26 +93,5 @@ export default function Navbar() {
 				</NavigationMenuList>
 			</NavigationMenu>
 		</header>
-	)
-}
-
-function MenuIcon(props) {
-	return (
-		<svg
-			{...props}
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="2"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-		>
-			<line x1="4" x2="20" y1="12" y2="12" />
-			<line x1="4" x2="20" y1="6" y2="6" />
-			<line x1="4" x2="20" y1="18" y2="18" />
-		</svg>
 	)
 }
