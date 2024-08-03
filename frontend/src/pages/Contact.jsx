@@ -1,8 +1,10 @@
 import React, { useState } from "react"
 import ContactForm from "../components/ContactForm"
-import axios from "axios"
+import emailjs from "@emailjs/browser"
 import { useToast } from "../components/ui/use-toast"
 import { Toaster } from "../components/ui/toaster"
+
+emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY)
 
 const Contact = () => {
 	const { toast } = useToast()
@@ -36,32 +38,54 @@ const Contact = () => {
 		const errors = validate()
 		setFormErrors(errors)
 
-		if (Object.keys(errors).length !== 0) return
-		axios
-			.post(`${import.meta.env.VITE_BACKEND_URL}/contact/send`, formValues)
-			.then((res) => {
+		if (Object.keys(errors).length !== 0) {
+			toast({
+				title: "Error",
+				description: "All fields are required.",
+				variant: "destructive",
+				duration: Infinity,
+			})
+			return
+		}
+
+		emailjs
+			.send(import.meta.env.VITE_EMAILJS_SERVICE_ID, import.meta.env.VITE_EMAILJS_TEMPLATE_ID, formValues)
+			.then((response) => {
 				toast({
 					title: "Success",
 					description: "Email sent successfully!",
 					variant: "success",
 					duration: 2000,
 				})
+				setFormValues({
+					name: "",
+					email: "",
+					subject: "",
+					message: "",
+				})
 			})
-			.catch((err) => {
+			.catch((error) => {
 				toast({
 					title: "Error",
-					description: err.message,
+					description: "Failed to send email. Please try again.",
 					variant: "destructive",
 					duration: Infinity,
 				})
+				console.error("EmailJS Error:", error)
 			})
 	}
 
 	return (
 		<>
 			<h1 className="text-primary font-bold md:hidden absolute top-8 right-8 z-50">Contact</h1>
-			<div className="flex pt-32 mb-8">
-				<ContactForm onSubmit={handleSubmit} errors={formErrors} values={formValues} onChange={handleChange} />
+			<div className="pt-24">
+				<div className="flex justify-center items-start py-8 gap-16 bg-primary">
+					<div>
+						<h1 className="text-5xl font-bold text-background mt-8">Get in touch.</h1>
+						<p className="text-muted my-4 pl-1">Fill out the form to send us an email.</p>
+					</div>
+					<ContactForm onSubmit={handleSubmit} errors={formErrors} values={formValues} onChange={handleChange} />
+				</div>
 			</div>
 			<Toaster />
 		</>

@@ -3,6 +3,7 @@ import MemberCard from "../components/MemberCard"
 import { SkeletonCard } from "../components/SkeletonCard"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
+import Error from "../components/Error"
 
 const fetchMembers = async () => {
 	const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/members`)
@@ -16,14 +17,14 @@ const Members = () => {
 	})
 
 	if (isError) {
-		return <div>Error: {error.message}</div>
+		return <Error />
 	}
 
 	return (
 		<>
 			<h1 className="text-primary font-bold md:hidden absolute top-8 right-8 z-50">Members</h1>
 			<div className="container mx-auto p-4 mb-8">
-				<h1 className="text-5xl font-bold mt-32 mb-8">Members</h1>
+				<h1 className="text-5xl font-bold mt-32 mb-8 text-primary">Members.</h1>
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mx-auto align-items-start justify-items-center">
 					{isLoading
 						? Array.from({ length: 8 }).map((_, index) => <SkeletonCard key={index} />)
@@ -50,5 +51,3 @@ const Members = () => {
 }
 
 export default Members
-
-//profitwithpurpose2016@gmail.com Profitwithpurpose!
