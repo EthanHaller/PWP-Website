@@ -1,6 +1,6 @@
 # Profit with Purpose
 
-Profit with Purpose is a professional website developed for the Profit with Purpose organization at the University of Virginia (UVA). Their goal is to strive to deliver impact-based consulting and investment to early-stage ESG startups from diverse perspectives. This project was created in collaboration with the executive members of the organization to design and populate the website's content effectively.
+Profit with Purpose is a professional website developed for the Profit with Purpose organization at the University of Virginia (UVA). Their goal is to deliver impact-based consulting and investment to early-stage ESG startups from diverse perspectives. This project was created in collaboration with the executive members of the organization to design and populate the website's content effectively.
 
 ## Project Overview
 
