@@ -7,18 +7,25 @@ import Portfolio from "./pages/Portfolio"
 import Recruitment from "./pages/Recruitment"
 import Members from "./pages/Members"
 import Contact from "./pages/Contact"
-import Project from "./pages/Project"
 import Layout from "./components/Layout"
 import NotFound from "./components/NotFound"
 import Login from "./pages/admin/Login"
-import Dashboard from "./pages/admin/Dashboard"
+import AdminHome from "./pages/admin/AdminHome"
+import Partners from "./pages/admin/Partners"
+import Countries from "./pages/admin/Countries"
+import Projects from "./pages/admin/Projects"
+import AdminMembers from "./pages/admin/Members"
+import AdminRecruitment from "./pages/admin/Recruitment"
+import AdminManagement from "./pages/admin/AdminManagement"
 import ProtectedRoute from "./components/ProtectedRoute"
 import { AuthProvider } from "./context/AuthContext"
 import "./index.css"
+import Error from "./components/Error"
 
 const router = createBrowserRouter([
 	{
 		element: <Layout />,
+		errorElement: <Error />,
 		children: [
 			{
 				path: "/",
@@ -27,10 +34,6 @@ const router = createBrowserRouter([
 			{
 				path: "/portfolio",
 				element: <Portfolio />,
-			},
-			{
-				path: "/portfolio/:id",
-				element: <Project />,
 			},
 			{
 				path: "/recruitment",
@@ -44,14 +47,11 @@ const router = createBrowserRouter([
 				path: "/contact",
 				element: <Contact />,
 			},
-			{
-				path: "*",
-				element: <NotFound />,
-			},
 		],
 	},
 	{
 		path: "/admin",
+		errorElement: <Error />,
 		children: [
 			{
 				path: "",
@@ -61,23 +61,49 @@ const router = createBrowserRouter([
 				element: <ProtectedRoute />,
 				children: [
 					{
-						path: "dashboard",
-						element: <Dashboard />,
+						path: "home",
+						element: <AdminHome />,
+					},
+					{
+						path: "partners",
+						element: <Partners />,
+					},
+					{
+						path: "countries",
+						element: <Countries />,
+					},
+					{
+						path: "projects",
+						element: <Projects />,
+					},
+					{
+						path: "members",
+						element: <AdminMembers />,
+					},
+					{
+						path: "recruitment",
+						element: <AdminRecruitment />,
+					},
+					{
+						path: "admin-management",
+						element: <AdminManagement />,
 					},
 				],
 			},
 		],
+	},
+	{
+		path: "*",
+		element: <NotFound />,
 	},
 ])
 
 const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
-		<QueryClientProvider client={queryClient}>
-			<AuthProvider>
-				<RouterProvider router={router} />
-			</AuthProvider>
-		</QueryClientProvider>
-	</React.StrictMode>
+	<QueryClientProvider client={queryClient}>
+		<AuthProvider>
+			<RouterProvider router={router} />
+		</AuthProvider>
+	</QueryClientProvider>
 )

@@ -5,6 +5,10 @@
 			"type": "GeometryCollection",
 			"geometries": [
 				{
+					"id": "PCI",
+					"properties": { "name": "Pacific Islands" }
+				},
+				{
 					"type": "Polygon",
 					"arcs": [[0, 1, 2, 3, 4, 5]],
 					"id": "AFG",
@@ -793,7 +797,7 @@
 					"type": "Polygon",
 					"arcs": [[-173, 548, -270, -235, -107, -103]],
 					"id": "PER",
-					"properties": { "name": "Peru", "isPreviousClient": true }
+					"properties": { "name": "Peru" }
 				},
 				{
 					"type": "MultiPolygon",
@@ -1041,7 +1045,7 @@
 					"type": "Polygon",
 					"arcs": [[-436, 675, 676, -500, 677, 678, 679, 680, -221, -59, 681, -620, 682]],
 					"id": "TZA",
-					"properties": { "name": "Tanzania", "isPreviousClient": true }
+					"properties": { "name": "Tanzania" }
 				},
 				{
 					"type": "Polygon",
@@ -1065,7 +1069,7 @@
 					"type": "MultiPolygon",
 					"arcs": [[[692]], [[693]], [[694]], [[695]], [[696]], [[697, -481, 698, -140]], [[699]], [[700]], [[701]], [[-144, 702, -142, 703]]],
 					"id": "USA",
-					"properties": { "name": "United States", "isPreviousClient": true }
+					"properties": { "name": "United States" }
 				},
 				{
 					"type": "Polygon",
@@ -1221,7 +1225,7 @@
 					"type": "Polygon",
 					"arcs": [[754]],
 					"id": "DMA",
-					"properties": { "name": "Dominica", "isPreviousClient": true }
+					"properties": { "name": "Dominica" }
 				},
 				{
 					"type": "Polygon",

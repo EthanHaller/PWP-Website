@@ -31,10 +31,10 @@ const Portfolio = () => {
 					{isLoading
 						? Array.from({ length: 6 }).map((_, index) => (
 								<Card key={index} className="relative overflow-hidden group rounded-none border-none shadow-none">
-									<Skeleton className="w-full h-auto aspect-video" />
-									<div className="flex justify-between items-center mt-2 mb-8 lg:hidden">
-										<Skeleton width={150} height={20} />
-										<Skeleton width={100} height={40} />
+									<Skeleton className="w-full h-auto aspect-video bg-foreground/10" />
+									<div className="flex flex-col justify-between mt-2 mb-8 lg:hidden">
+										<Skeleton className="w-3/4 h-6 mb-2" />
+										<Skeleton className="w-1/2 h-10" />
 									</div>
 								</Card>
 						  ))
@@ -45,15 +45,15 @@ const Portfolio = () => {
 										<img src={project.coverImageUrl} alt={project.title} className="w-full h-auto object-cover aspect-video" />
 										<div className="absolute inset-0 bg-background/90 flex flex-col items-center justify-center transform lg:-translate-y-full lg:group-hover:translate-y-0 transition-transform duration-500 ease-in-out hidden lg:flex">
 											<h3 className="text-2xl mb-4 font-bold">{project.title}</h3>
-											<Link to={`/portfolio/${project.id}`}>
+											<a href={project.presentationUrl} target="_blank">
 												<Button className="bg-primary text-lg px-6 py-3">View More</Button>
-											</Link>
+											</a>
 										</div>
 										<div className="flex justify-between items-center mt-2 mb-8 lg:hidden">
 											<h3 className="text-xl font-bold">{project.title}</h3>
-											<Link to={`/portfolio/${project.id}`}>
-												<Button className="bg-primary text-md px-3 py-3">View More</Button>
-											</Link>
+											<a href={project.presentationUrl} target="_blank">
+												<Button className="bg-primary text-lg px-6 py-3">View More</Button>
+											</a>
 										</div>
 									</Card>
 								))}

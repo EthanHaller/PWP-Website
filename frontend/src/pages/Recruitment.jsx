@@ -2,8 +2,20 @@ import React from "react"
 import { FaStar, FaTools, FaGlobeAmericas, FaGraduationCap } from "react-icons/fa"
 import { Card, CardHeader, CardContent } from "../components/ui/card"
 import { Button } from "../components/ui/button"
+import { useQuery } from "@tanstack/react-query"
+import axios from "axios"
+
+const fetchRecruitmentInfo = async () => {
+	const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/recruitment`)
+	return response.data
+}
 
 const Recruitment = () => {
+	const { data } = useQuery({
+		queryKey: ["recruitmentInfo"],
+		queryFn: fetchRecruitmentInfo,
+	})
+
 	return (
 		<>
 			<h1 className="text-primary font-bold md:hidden absolute top-8 right-8 z-50">Recruitment</h1>
@@ -74,13 +86,13 @@ const Recruitment = () => {
 					</Card>
 				</div>
 			</div>
-			<div className="flex flex-col items-center mt-8 mb-16">
-				<h2 className="font-bold text-4xl mb-8">Interested in joining?</h2>
+			<div className="flex flex-col items-center mt-8 mb-16 container">
+				<h2 className="font-bold text-2xl md:text-4xl mb-8">Interested in joining?</h2>
 				<Button>
 					<a
 						target="_blank"
-						className="text-xl px-8"
-						href="https://docs.google.com/forms/d/e/1FAIpQLScpZUqi7rGQbq9UFfS1Abc8jkhdpKs0mws9XkzkfRahAD1iYw/viewform?usp=sf_link"
+						className="text-lg md:text-xl px-8"
+						href={data?.recruitmentFormUrl ?? ""}
 					>
 						Fill out our interest form!
 					</a>
