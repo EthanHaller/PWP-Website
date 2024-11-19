@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/members")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173, https://uvapwp.com")
 public class MembersController {
 
     private final MembersService membersService;
@@ -26,18 +26,30 @@ public class MembersController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addMember(@RequestParam String name,
-                                       @RequestParam(required = false) String execRole,
-                                       @RequestParam MultipartFile headshot) throws Exception {
-        return ResponseEntity.ok(membersService.addMember(name, execRole, headshot));
+    public ResponseEntity<?> addMember(@RequestPart String name,
+                                       @RequestPart(required = false) String execRole,
+                                       @RequestPart MultipartFile headshot) throws Exception {
+        try {
+            membersService.addMember(name, execRole, headshot);
+            return ResponseEntity.ok("Member added successfully");
+        } catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateMember(@PathVariable String id,
-                                          @RequestParam(required = false) String name,
-                                          @RequestParam(required = false) String execRole,
-                                          @RequestParam(required = false) MultipartFile headshot) throws Exception {
-        return ResponseEntity.ok(membersService.updateMember(id, name, execRole, headshot));
+                                          @RequestPart(required = false) String name,
+                                          @RequestPart(required = false) String execRole,
+                                          @RequestPart(required = false) MultipartFile headshot) throws Exception {
+        try {
+            membersService.updateMember(id, name, execRole, headshot);
+            return ResponseEntity.ok("Member updated successfully");
+        } catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/delete/{id}")
@@ -46,6 +58,7 @@ public class MembersController {
             membersService.deleteMember(id);
             return ResponseEntity.ok("Member deleted successfully");
         } catch (Exception e) {
+            System.out.println(e);
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }
@@ -53,7 +66,6 @@ public class MembersController {
     @PutMapping("/updateRoleOrder")
     public ResponseEntity<?> updateRoleOrder(@RequestBody Map<String, List<String>> data) {
         List<String> roles = data.get("roles");
-        System.out.println(roles);
         try {
             membersService.updateRoleOrder(roles);
             return ResponseEntity.ok("Role order updated successfully");

@@ -2,6 +2,8 @@ package com.uvapwp.members.service;
 
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteBatch;
+import com.google.cloud.storage.Acl;
+import com.google.cloud.storage.Blob;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.firebase.cloud.StorageClient;
@@ -60,19 +62,23 @@ public class MembersService {
 
 
     public Map<String, Object> addMember(String name, String execRole, MultipartFile headshot) throws Exception {
-        // Step 1: Upload file to Firebase Storage
         String fileName = "members/" + System.currentTimeMillis() + "-" + headshot.getOriginalFilename();
         InputStream headshotStream = headshot.getInputStream();
         storageClient.bucket().create(fileName, headshotStream, headshot.getContentType());
-        String headshotUrl = String.format("https://storage.googleapis.com/%s/%s",
-                storageClient.bucket().getName(), fileName);
-    
-        // Step 2: Get or create execRole reference
+
+        Blob blob = storageClient.bucket().get(fileName);
+        if (blob == null) {
+            throw new Exception("Failed to upload file to Firebase Storage");
+        }
+        blob.createAcl(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER));
+
+        String headshotUrl = String.format("https://storage.googleapis.com/%s/%s", storageClient.bucket().getName(), fileName);
+
         DocumentReference execRoleRef = null;
         if (execRole != null) {
             var execRoles = firestore.collection("execRoles");
             var execRoleSnapshot = execRoles.whereEqualTo("name", execRole).get().get();
-    
+
             if (execRoleSnapshot.isEmpty()) {
                 var newExecRole = new HashMap<String, Object>();
                 newExecRole.put("name", execRole);
@@ -82,8 +88,7 @@ public class MembersService {
                 execRoleRef = execRoleSnapshot.getDocuments().get(0).getReference();
             }
         }
-    
-        // Step 3: Save member data to Firestore
+
         var memberData = new HashMap<String, Object>();
         memberData.put("name", name);
         memberData.put("headshotUrl", headshotUrl);
@@ -92,8 +97,7 @@ public class MembersService {
         }
         var membersCollection = firestore.collection("members");
         var memberRef = membersCollection.add(memberData).get();
-    
-        // Step 4: Return saved member data
+
         DocumentSnapshot newMemberDoc = memberRef.get().get();
         Map<String, Object> newMember = newMemberDoc.getData();
         if (newMember != null) {
@@ -101,24 +105,42 @@ public class MembersService {
         }
         return newMember;
     }
+
     
     public Map<String, Object> updateMember(String memberId, String name, String execRole, MultipartFile headshot) throws Exception {
-        // Step 1: Reference to the member document
         DocumentReference memberRef = firestore.collection("members").document(memberId);
     
-        // Step 2: Prepare data to update
+        DocumentSnapshot memberDoc = memberRef.get().get();
+        if (!memberDoc.exists()) {
+            throw new Exception("Member not found");
+        }
+    
         Map<String, Object> memberData = new HashMap<>();
         if (name != null) {
             memberData.put("name", name);
         }
     
         if (headshot != null) {
-            // Upload new headshot to Firebase Storage
+            String existingHeadshotUrl = (String) memberDoc.get("headshotUrl");
+            if (existingHeadshotUrl != null) {
+                String existingFilePath = extractFilePathFromUrl(existingHeadshotUrl);
+                if (existingFilePath != null) {
+                    Blob existingBlob = storageClient.bucket().get(existingFilePath);
+                    if (existingBlob != null) {
+                        existingBlob.delete();
+                    }
+                }
+            }
+    
             String fileName = "members/" + System.currentTimeMillis() + "-" + headshot.getOriginalFilename();
             InputStream headshotStream = headshot.getInputStream();
-            storageClient.bucket().create(fileName, headshotStream, headshot.getContentType());
-            String headshotUrl = String.format("https://storage.googleapis.com/%s/%s",
-                    storageClient.bucket().getName(), fileName);
+            Blob newBlob = storageClient.bucket().create(fileName, headshotStream, headshot.getContentType());
+            if (newBlob == null) {
+                throw new Exception("Failed to upload file to Firebase Storage");
+            }
+            newBlob.createAcl(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER));
+    
+            String headshotUrl = String.format("https://storage.googleapis.com/%s/%s", storageClient.bucket().getName(), fileName);
             memberData.put("headshotUrl", headshotUrl);
         }
     
@@ -136,12 +158,12 @@ public class MembersService {
                 DocumentReference execRoleRef = execRoleSnapshot.getDocuments().get(0).getReference();
                 memberData.put("execRole", execRoleRef);
             }
+        } else {
+            memberData.put("execRole", null);
         }
     
-        // Step 3: Update member document
         memberRef.update(memberData).get();
     
-        // Step 4: Return updated member data
         DocumentSnapshot updatedMemberDoc = memberRef.get().get();
         Map<String, Object> updatedMember = updatedMemberDoc.getData();
         if (updatedMember != null) {
@@ -149,27 +171,48 @@ public class MembersService {
         }
         return updatedMember;
     }
+    
 
     public void deleteMember(String memberId) throws Exception {
-        // Step 1: Reference to the member document
         DocumentReference memberRef = firestore.collection("members").document(memberId);
     
-        // Step 2: Get the member document data
         DocumentSnapshot memberDoc = memberRef.get().get();
         if (!memberDoc.exists()) {
             throw new Exception("Member not found");
         }
     
-        // Step 3: Delete the headshot file from Firebase Storage
         String headshotUrl = (String) memberDoc.get("headshotUrl");
         if (headshotUrl != null) {
-            String filePath = headshotUrl.split("/")[3]; // Extract the file path
-            storageClient.bucket().get(filePath).delete();
+            String filePath = extractFilePathFromUrl(headshotUrl);
+            if (filePath != null) {
+                Blob fileBlob = storageClient.bucket().get(filePath);
+                if (fileBlob != null) {
+                    fileBlob.delete();
+                }
+            } else {
+                throw new Exception("Could not extract file path from headshot URL: " + headshotUrl);
+            }
         }
     
-        // Step 4: Delete the member document
         memberRef.delete().get();
     }
+    
+    private String extractFilePathFromUrl(String url) {
+        if (url.startsWith("https://storage.googleapis.com")) {
+            String[] parts = url.split("/", 4);
+            if (parts.length == 4) {
+                return parts[3]; 
+            }
+        } else if (url.startsWith("https://firebasestorage.googleapis.com")) {
+            String[] parts = url.split("/o/");
+            if (parts.length == 2) {
+                String filePathWithParams = parts[1];
+                return filePathWithParams.split("\\?")[0];
+            }
+        }
+        return null;
+    }
+    
 
     public void updateRoleOrder(List<String> roles) throws ExecutionException, InterruptedException {
         var execRolesCollection = firestore.collection("execRoles");

@@ -24,7 +24,7 @@ public class FirebaseConfig {
 
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .setStorageBucket("your-storage-bucket.appspot.com")
+                    .setStorageBucket("pwpwebsite.appspot.com")
                     .build();
 
             FirebaseApp.initializeApp(options);
