@@ -107,7 +107,7 @@ const EditMemberModal = ({ open, onOpenChange, member }) => {
 					</div>
 					<div>
 						<Label htmlFor="edit-execRole" className="block text-card-foreground">
-							Exec Role (Optional)
+							Exec Role (Blank will remove them from exec)
 						</Label>
 						<Input id="edit-execRole" type="text" name="execRole" value={formData.execRole} onChange={handleInputChange} className="w-full" />
 					</div>
