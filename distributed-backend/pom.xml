@@ -26,6 +26,7 @@
     <modules>
         <module>firebase-shared</module>
         <module>members-service</module>
+        <module>recruitment-service</module>
     </modules>
 
     <!-- Dependencies -->
