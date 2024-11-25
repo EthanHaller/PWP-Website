@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recruitment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: recruitment
+  template:
+    metadata:
+      labels:
+        app: recruitment
+    spec:
+      containers:
+      - name: recruitment
+        image: ethanhaller5/recruitment:1.0.0
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"

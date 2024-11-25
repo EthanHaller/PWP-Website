@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: countries
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: countries
+  template:
+    metadata:
+      labels:
+        app: countries
+    spec:
+      containers:
+      - name: countries
+        image: ethanhaller5/countries:1.0.0
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"

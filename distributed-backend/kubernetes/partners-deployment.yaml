@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: partners
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: partners
+  template:
+    metadata:
+      labels:
+        app: partners
+    spec:
+      containers:
+      - name: partners
+        image: ethanhaller5/partners:1.0.0
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
