@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: countries-service
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: countries-service
@@ -22,8 +22,8 @@ spec:
           value: "prod"
         resources:
           requests:
-            memory: "50Mi"
-            cpu: "10m"
+            cpu: "20m"
+            memory: "128Mi"
           limits:
-            memory: "100Mi"
-            cpu: "50m"
+            cpu: "75m"
+            memory: "160Mi"
