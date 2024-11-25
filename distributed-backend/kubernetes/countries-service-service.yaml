@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: partners
+  name: countries-service
 spec:
   selector:
-    app: partners
+    app: countries-service
   ports:
     - protocol: TCP
       port: 80

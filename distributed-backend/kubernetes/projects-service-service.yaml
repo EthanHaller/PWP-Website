@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: recruitment
+  name: projects-service
 spec:
   selector:
-    app: recruitment
+    app: projects-service
   ports:
     - protocol: TCP
       port: 80

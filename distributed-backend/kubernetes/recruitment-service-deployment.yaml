@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: partners
+  name: recruitment-service
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: partners
+      app: recruitment-service
   template:
     metadata:
       labels:
-        app: partners
+        app: recruitment-service
     spec:
       containers:
-      - name: partners
-        image: ethanhaller5/partners:1.0.0
+      - name: recruitment-service
+        image: ethanhaller5/recruitment-service:1.0.0
         ports:
         - containerPort: 8080
         env:
