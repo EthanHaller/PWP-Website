@@ -9,7 +9,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/countries")
-@CrossOrigin(origins = "http://localhost:5173, https://uvapwp.com")
+@CrossOrigin(origins = "https://uvapwp.com")
 public class CountriesController {
 
     private final CountriesService countriesService;

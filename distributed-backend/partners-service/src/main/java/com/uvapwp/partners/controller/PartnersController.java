@@ -9,7 +9,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/partners")
-@CrossOrigin(origins = "http://localhost:5173, https://uvapwp.com")
+@CrossOrigin(origins = "https://uvapwp.com")
 public class PartnersController {
 
     private final PartnersService partnersService;
