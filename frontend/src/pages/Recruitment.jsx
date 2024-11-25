@@ -87,17 +87,20 @@ const Recruitment = () => {
 				</div>
 			</div>
 			<div className="flex flex-col items-center mt-8 mb-16 container">
-				<h2 className="font-bold text-2xl md:text-4xl mb-8">Interested in joining?</h2>
-				<Button>
-					<a
-						target="_blank"
-						className="text-lg md:text-xl px-8"
-						href={data?.recruitmentFormUrl ?? ""}
-					>
-						Fill out our interest form!
-					</a>
-				</Button>
-				<p className="mt-4 text-xs text-muted-foreground">Updated Fall 2024</p>
+				{data?.recruitmentFormUrl && (
+					<>
+						<h2 className="font-bold text-2xl md:text-4xl mb-8">Interested in joining?</h2>
+						<Button>
+							<a
+								target="_blank"
+								className="text-lg md:text-xl px-8"
+								href={data?.recruitmentFormUrl ?? ""}
+							>
+								Fill out our interest form!
+							</a>
+						</Button>
+					</>
+				)}
 			</div>
 		</>
 	)

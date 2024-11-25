@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: countries-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: countries-service
+  template:
+    metadata:
+      labels:
+        app: countries-service
+    spec:
+      containers:
+      - name: countries-service
+        image: ethanhaller5/countries-service:1.0.3
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+        resources:
+          requests:
+            cpu: "20m"
+            memory: "128Mi"
+          limits:
+            cpu: "75m"
+            memory: "160Mi"
