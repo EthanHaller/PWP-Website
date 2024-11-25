@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: partners-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: partners-service
+  template:
+    metadata:
+      labels:
+        app: partners-service
+    spec:
+      containers:
+      - name: partners-service
+        image: ethanhaller5/partners-service:1.0.3
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+        resources:
+          requests:
+            cpu: "20m"
+            memory: "128Mi"
+          limits:
+            cpu: "75m"
+            memory: "160Mi"

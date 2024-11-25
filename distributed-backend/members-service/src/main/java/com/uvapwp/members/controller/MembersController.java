@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/members")
-@CrossOrigin(origins = "http://localhost:5173, https://uvapwp.com")
+@CrossOrigin(origins = "https://uvapwp.com")
 public class MembersController {
 
     private final MembersService membersService;

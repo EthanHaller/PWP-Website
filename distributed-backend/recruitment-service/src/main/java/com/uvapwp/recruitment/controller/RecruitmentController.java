@@ -8,7 +8,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/recruitment")
-@CrossOrigin(origins = "http://localhost:5173, https://uvapwp.com")
+@CrossOrigin(origins = "https://uvapwp.com")
 public class RecruitmentController {
 
     private final RecruitmentService recruitmentService;

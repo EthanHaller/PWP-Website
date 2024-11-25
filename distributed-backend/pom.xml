@@ -15,7 +15,7 @@
     <!-- Project Information -->
     <groupId>com.uvapwp</groupId>
     <artifactId>backend</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>ProfitWithPurposeBackend</name>
     <description>Backend for Profit with Purpose using Spring Boot and Firebase</description>
 
@@ -26,7 +26,11 @@
     <modules>
         <module>firebase-shared</module>
         <module>members-service</module>
+        <module>countries-service</module>
         <module>recruitment-service</module>
+        <module>projects-service</module>
+        <module>partners-service</module>
+        <module>admin-service</module>
     </modules>
 
     <!-- Dependencies -->
