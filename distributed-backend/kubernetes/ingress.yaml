@@ -2,14 +2,19 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: app-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
   - host: localhost
     http:
       paths:
+      - path: /recruitment
+        pathType: Prefix
+        backend:
+          service:
+            name: recruitment-service
+            port:
+              number: 80
       - path: /admin
         pathType: Prefix
         backend:
@@ -43,12 +48,5 @@ spec:
         backend:
           service:
             name: projects-service
-            port:
-              number: 80
-      - path: /recruitment
-        pathType: Prefix
-        backend:
-          service:
-            name: recruitment-service
             port:
               number: 80

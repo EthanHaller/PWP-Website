@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: partners-service
 spec:
+  type: ClusterIP
   selector:
     app: partners-service
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8080
-  type: LoadBalancer
