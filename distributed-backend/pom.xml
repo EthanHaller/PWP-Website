@@ -26,6 +26,7 @@
     <modules>
         <module>firebase-shared</module>
         <module>members-service</module>
+        <module>countries-service</module>
         <module>recruitment-service</module>
         <module>projects-service</module>
         <module>partners-service</module>
