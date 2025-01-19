@@ -9,13 +9,25 @@ The website serves as a platform for the organization to showcase their mission,
 ## Technologies Used
 
 - **Frontend**: React.js, Tailwind, shadcn/ui
-- **Backend**: Java Spring Boot, deployed using Docker containers and Kubernetes for orchestration
+- **Backend**:
+  - **Current Production Backend**: Node.js with serverless-http, deployed on Netlify for cost-efficiency.
+  - **Distributed Backend**: Java Spring Boot microservices architecture, containerized with Docker and orchestrated using Kubernetes.
 - **Database and Storage**: Firebase (used for data storage, file storage, and authentication)
+
+## Backend Architecture
+
+### Current Production Backend
+The current production backend is a **Node.js** implementation using **serverless-http**, deployed on **Netlify** to take advantage of its free tier, making it a cost-efficient solution. This backend handles API requests effectively given the current frequency of usage, providing a reliable solution with minimal overhead.
+
+### Distributed Backend
+A more robust and scalable backend has been developed using **Java Spring Boot**, following a microservices architecture. Each microservice is independently containerized with **Docker** and is designed to be deployed and managed using **Kubernetes** on **Digital Ocean Kubernetes (DOKS)**. This architecture allows for improved scalability and modularity. However, due to higher operational costs associated with deploying and maintaining the microservices architecture relative to current API request frequencies, resources have not been allocated for its deployment at this time.
+
+Having both backend options allows the organization to adapt to changing needs.
 
 ## Features
 
 - **Dynamic Content Management**: Admins can log in securely using Firebase authentication to edit and update website content.
-- **Scalable Backend**: The backend is containerized with Docker and orchestrated using Kubernetes for scalability and reliability.
+- **Scalable Backend Options**: Flexibility to switch between a cost-effective serverless backend and a scalable microservices architecture.
 - **Responsive Design**: The website is designed to be responsive and accessible on various devices.
 - **Secure Admin Access**: Only authorized personnel can access the admin panel to make changes.
 
