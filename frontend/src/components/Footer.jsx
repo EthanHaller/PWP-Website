@@ -20,24 +20,24 @@ export default function Component() {
 			<div className="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-0">
 				<div className="flex items-center gap-4">
 					<Link to="/" className="mr-6 hidden lg:flex">
-						<img src="/pwp.svg" className="h-12" alt="Profit with Purpose" />
+						<img src="/pwp.svg" className="h-12" alt="PWP Logo" />
 						<span className="sr-only">Profit with Purpose</span>
 					</Link>
 					<p className="text-xs text-muted-foreground">&copy; {new Date().getFullYear()} - All rights reserved.</p>
 				</div>
 				<div className="flex items-center gap-4">
 					{data?.facebookUrl && (
-						<a href={data?.facebookUrl} target="_blank" rel="noopener noreferrer">
+						<a href={data.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" title="Facebook">
 							<FaFacebook size={35} className="text-primary" />
 						</a>
 					)}
 					{data?.instagramUrl && (
-						<a href={data?.instagramUrl} target="_blank" rel="noopener noreferrer">
+						<a href={data.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram page" title="Instagram">
 							<FaInstagram size={40} className="text-primary" />
 						</a>
 					)}
 					{data?.linkedinUrl && (
-						<a href={data?.linkedinUrl} target="_blank" rel="noopener noreferrer">
+						<a href={data.linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="Visit our LinkedIn page" title="LinkedIn">
 							<FaLinkedin size={40} className="text-primary" />
 						</a>
 					)}

@@ -52,6 +52,9 @@ export default function AdminNavbar() {
 						<NavLink to="/admin/members" className="flex w-full items-center py-2 text-lg font-semibold" onClick={closeSheet}>
 							Members
 						</NavLink>
+						<NavLink to="/admin/alumni" className="flex w-full items-center py-2 text-lg font-semibold" onClick={closeSheet}>
+							Alumni
+						</NavLink>
 						<NavLink to="/admin/recruitment" className="flex w-full items-center py-2 text-lg font-semibold" onClick={closeSheet}>
 							Recruitment
 						</NavLink>
@@ -89,6 +92,9 @@ export default function AdminNavbar() {
 					</NavLink>
 					<NavLink to="/admin/members" className={({ isActive }) => (isActive ? "text-primary font-bold" : "text-gray-600 hover:text-primary")}>
 						Members
+					</NavLink>
+					<NavLink to="/admin/alumni" className={({ isActive }) => (isActive ? "text-primary font-bold" : "text-gray-600 hover:text-primary")}>
+						Alumni
 					</NavLink>
 					<NavLink to="/admin/recruitment" className={({ isActive }) => (isActive ? "text-primary font-bold" : "text-gray-600 hover:text-primary")}>
 						Recruitment

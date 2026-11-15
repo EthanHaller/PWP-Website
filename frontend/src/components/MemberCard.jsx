@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/card"
 export default function Component({ headshotUrl, name, execRole, about }) {
 	return (
 		<Card className="w-full max-w-sm rounded-lg overflow-hidden shadow-lg">
-			<img src={headshotUrl} alt="Card Image" width={300} height={300} className="w-full aspect-square object-cover" />
+			<img src={headshotUrl} alt={`${name} Headshot`} width={300} height={300} className="w-full aspect-square object-cover" />
 			<div className="p-4 bg-background">
 				<h3 className="text-lg font-bold">{name}</h3>
                 {execRole && <h2 className="text-sm mb-2">{execRole}</h2>}

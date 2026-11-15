@@ -360,8 +360,14 @@ const Projects = () => {
 			<h2 className="text-3xl mb-4">Total Count: {data?.totalCount}</h2>
 			<div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
 				{!isLoading &&
-					data.projects
-						.sort((a, b) => a.date.seconds - b.date.seconds)
+					data?.projects
+						?.sort((a, b) => {
+							const dateComparison = new Date(b.date) - new Date(a.date)
+							if (dateComparison !== 0) {
+								return dateComparison
+							}
+							return a.title.localeCompare(b.title)
+						})
 						.map((project) => (
 							<Card key={project.id} className="bg-primary-foreground p-4 flex flex-col">
 								<CardHeader className="p-2">

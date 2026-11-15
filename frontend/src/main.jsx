@@ -6,6 +6,7 @@ import Home from "./pages/Home"
 import Portfolio from "./pages/Portfolio"
 import Recruitment from "./pages/Recruitment"
 import Members from "./pages/Members"
+import Alumni from "./pages/Alumni"
 import Contact from "./pages/Contact"
 import Layout from "./components/Layout"
 import NotFound from "./components/NotFound"
@@ -15,6 +16,7 @@ import Partners from "./pages/admin/Partners"
 import Countries from "./pages/admin/Countries"
 import Projects from "./pages/admin/Projects"
 import AdminMembers from "./pages/admin/Members"
+import AdminAlumni from "./pages/admin/Alumni"
 import AdminRecruitment from "./pages/admin/Recruitment"
 import AdminManagement from "./pages/admin/AdminManagement"
 import ProtectedRoute from "./components/ProtectedRoute"
@@ -42,6 +44,10 @@ const router = createBrowserRouter([
 			{
 				path: "/members",
 				element: <Members />,
+			},
+			{
+				path: "/alumni",
+				element: <Alumni />
 			},
 			{
 				path: "/contact",
@@ -79,6 +85,10 @@ const router = createBrowserRouter([
 					{
 						path: "members",
 						element: <AdminMembers />,
+					},
+					{
+						path: "alumni",
+						element: <AdminAlumni />,
 					},
 					{
 						path: "recruitment",

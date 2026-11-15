@@ -38,8 +38,14 @@ const Portfolio = () => {
 									</div>
 								</Card>
 						  ))
-						: data.projects
-								.sort((a, b) => b.date.seconds - a.date.seconds)
+						: data?.projects
+								?.sort((a, b) => {
+									const dateComparison = new Date(b.date) - new Date(a.date)
+									if (dateComparison !== 0) {
+										return dateComparison
+									}
+									return a.title.localeCompare(b.title)
+								})
 								.map((project) => (
 									<Card key={project.id} className="relative overflow-hidden group rounded-none border-none shadow-none">
 										<img src={project.coverImageUrl} alt={project.title} className="w-full h-auto object-cover aspect-video" />
