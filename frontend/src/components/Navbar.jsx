@@ -31,7 +31,7 @@ export default function Navbar() {
 				<SheetContent side="left">
 					<SheetDescription></SheetDescription>
 					<NavLink to="/" onClick={closeSheet}>
-						<img src="/pwp.svg" className="h-12" />
+						<img alt="PWP Logo" src="/pwp.svg" className="h-12" />
 						<span className="sr-only">Profit with Purpose</span>
 						<SheetTitle>Profit with Purpose</SheetTitle>
 					</NavLink>
@@ -48,23 +48,24 @@ export default function Navbar() {
 				</SheetContent>
 			</Sheet>
 			<NavLink to="/" className="mr-6 hidden md:flex items-center">
-				<img src="/pwp.svg" className="h-14" />
+				<img alt="PWP Logo" src="/pwp.svg" className="h-14" />
 				<span className="sr-only">Profit with Purpose</span>
 			</NavLink>
 			<NavigationMenu className="hidden w-full md:flex md:justify-end">
 				<NavigationMenuList>
 					{navItems.map((item) => (
-						<NavLink
-							key={item.path}
-							to={item.path}
-							className={({ isActive }) =>
-								isActive
-									? "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-bold transition-border border-b-2 border-primary hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-									: "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black/20 hover:border-primary hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-							}
-						>
-							{item.label}
-						</NavLink>
+						<li key={item.path}>
+							<NavLink
+								to={item.path}
+								className={({ isActive }) =>
+									isActive
+										? "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-bold transition-border border-b-2 border-primary hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+										: "group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-border border-b-2 border-black/20 hover:border-primary hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+								}
+							>
+								{item.label}
+							</NavLink>
+						</li>
 					))}
 				</NavigationMenuList>
 			</NavigationMenu>

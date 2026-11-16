@@ -66,11 +66,11 @@ const Login = () => {
 	return (
 		<div className="flex">
 			<div className="hidden lg:flex w-1/2 min-h-screen flex-col justify-center items-center">
-				<img src="/pwp.svg" alt="Logo" className="h-96" />
+				<img src="/pwp.svg" alt="PWP Logo" className="h-96" />
 				<h1 className="text-5xl font-bold text-primary mt-8">Welcome, Admin</h1>
 			</div>
 			<div className="w-full lg:w-1/2 min-h-screen container flex flex-col justify-center items-center">
-				<img src="/pwp.svg" alt="Logo" className="lg:hidden h-48 mb-8" />
+				<img src="/pwp.svg" alt="PWP Logo" className="lg:hidden h-48 mb-8" />
 				<h1 className="lg:hidden text-xl text-center text-primary">Welcome, Admin</h1>
 				{showResetPassword ? (
 					<>

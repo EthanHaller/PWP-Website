@@ -386,23 +386,25 @@ const Members = () => {
 					{(provided) => (
 						<ul {...provided.droppableProps} ref={provided.innerRef} className="list-none p-0 m-0">
 							{execRoles.map((role, index) => (
-								<Draggable key={role} draggableId={role} index={index}>
-									{(provided) => (
-										<li
-											ref={provided.innerRef}
-											{...provided.draggableProps}
-											{...provided.dragHandleProps}
-											className="flex justify-between items-center bg-primary-foreground p-4 mb-2 rounded shadow"
-										>
-											{index + 1}
-											{":\t"}
-											{role}
-											<MdDragIndicator />
-										</li>
-									)}
-								</Draggable>
+								<li key={role}>
+									<Draggable draggableId={role} index={index}>
+										{(provided) => (
+											<div
+												ref={provided.innerRef}
+												{...provided.draggableProps}
+												{...provided.dragHandleProps}
+												className="flex justify-between items-center bg-primary-foreground p-4 mb-2 rounded shadow"
+											>
+												{index + 1}
+												{": "}
+												{role}
+												<MdDragIndicator />
+											</div>
+										)}
+									</Draggable>
+								</li>
 							))}
-							{provided.placeholder}
+							{provided.placeholder && <li className="h-0">{provided.placeholder}</li>}
 						</ul>
 					)}
 				</Droppable>

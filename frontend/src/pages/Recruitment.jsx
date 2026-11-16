@@ -96,7 +96,7 @@ const Recruitment = () => {
 								className="text-lg md:text-xl px-8"
 								href={data?.recruitmentFormUrl ?? ""}
 							>
-								Fill out our interest form!
+								{data?.recruitmentFormTitle}
 							</a>
 						</Button>
 					</>

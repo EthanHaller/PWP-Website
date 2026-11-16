@@ -35,6 +35,17 @@ Having both backend options allows the organization to adapt to changing needs.
 
 The website is deployed and accessible at [https://uvapwp.com/](https://uvapwp.com/).
 
+The frontend and API are tracked in this repository and run in two separate Netlify projects. Each app has its own `package.json` and lockfile. Commit changes to either app from this repository.
+
+Link both existing Netlify projects to `EthanHaller/PWP-Website`. Set the base directory and leave the package directory blank so each project installs dependencies and reads `netlify.toml` from its own directory.
+
+| Netlify project | Base directory | Configuration |
+| --- | --- | --- |
+| Frontend | `frontend` | Builds with `npm run build` and publishes `dist`. |
+| API | `backend` | Bundles `netlify/functions` and routes `/api/*` to the API function. |
+
+Set `main` as the production branch for both projects and stop auto publishing before changing their Git links. Keep the existing domains and environment variables. Verify both deploy candidates before publishing them manually from Netlify. Use read-only checks for the production cutover and reserve tests that change data for the isolated QA environment.
+
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.

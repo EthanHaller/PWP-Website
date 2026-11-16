@@ -1,5 +1,5 @@
-var express = require("express")
-var router = express.Router()
+const express = require("express")
+const router = express.Router()
 const multer = require("multer")
 const upload = multer()
 const { collection, getDocs, getDoc, addDoc, updateDoc, doc, deleteDoc } = require("firebase/firestore")
