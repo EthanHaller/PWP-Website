@@ -3,6 +3,7 @@ const { getFirestore } = require("firebase/firestore")
 const { getStorage } = require("firebase/storage")
 const { getAuth } = require("firebase/auth")
 const admin = require("firebase-admin")
+const qa = process.env.PWP_ENV === "qa"
 
 const firebaseConfig = {
 	apiKey: process.env.apiKey,
@@ -28,13 +29,15 @@ const serviceAccount = {
 	universe_domain: process.env.FIREBASE_UNIVERSE_DOMAIN,
 }
 
-admin.initializeApp({
-	credential: admin.credential.cert(serviceAccount),
-})
-
+if (qa && (firebaseConfig.projectId !== "pwp-website-qa" || firebaseConfig.storageBucket !== "pwp-website-qa.firebasestorage.app")) {
+	throw new Error("Local QA requires the pwp-website-qa Firebase configuration.")
+}
 const firebase = initializeApp(firebaseConfig)
-const db = getFirestore(firebase)
 const auth = getAuth(firebase)
 const storage = getStorage(firebase)
+admin.initializeApp(qa
+	? { projectId: firebaseConfig.projectId, credential: admin.credential.applicationDefault() }
+	: { credential: admin.credential.cert(serviceAccount) })
+const db = qa ? admin.firestore() : getFirestore(firebase)
 
 module.exports = { db, auth, storage, admin }

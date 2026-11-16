@@ -46,6 +46,22 @@ Link both existing Netlify projects to `EthanHaller/PWP-Website`. Set the base d
 
 Set `main` as the production branch for both projects and stop auto publishing before changing their Git links. Keep the existing domains and environment variables. Verify both deploy candidates before publishing them manually from Netlify. Use read-only checks for the production cutover and reserve tests that change data for the isolated QA environment.
 
+### Local development and integration testing
+
+Run the frontend and API on your machine against the `pwp-website-qa` Firebase project and its synthetic data. The Git-ignored `qa.local/.env` file in each app contains its QA settings. Run integration checks from a local checkout of `main` before publishing the production deploys in Netlify.
+
+Use Node.js 22 for local development. Authenticate the local API once with `gcloud auth application-default login` using a Google account with access to the QA project. Run these commands in separate terminals from their respective directories.
+
+```sh
+# backend
+node --env-file=qa.local/.env netlify/functions/api.js
+
+# frontend
+npm run dev -- --host 127.0.0.1 --port 5173 --strictPort
+```
+
+Use the app's login page for the QA Firebase Auth account. The API reads Firestore using Google credentials supplied outside the env files. The QA Firebase project uses Spark, so file uploads that require Cloud Storage are unavailable in this setup.
+
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.

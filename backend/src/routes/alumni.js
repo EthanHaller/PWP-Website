@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const multer = require("multer")
 const upload = multer()
-const { collection, getDocs, getDoc, addDoc, updateDoc, doc, deleteDoc } = require("firebase/firestore")
+const { collection, getDocs, getDoc, addDoc, updateDoc, doc, deleteDoc } = require("../firestore")
 const { ref, uploadBytes, getDownloadURL, deleteObject } = require("firebase/storage")
 const { db, storage } = require("../../netlify/functions/firebase-config")
 
