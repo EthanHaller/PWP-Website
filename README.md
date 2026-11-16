@@ -46,6 +46,10 @@ Link both existing Netlify projects to `EthanHaller/PWP-Website`. Set the base d
 
 Set `main` as the production branch for both projects and stop auto publishing before changing their Git links. Keep the existing domains and environment variables. Verify both deploy candidates before publishing them manually from Netlify. Use read-only checks for the production cutover and reserve tests that change data for the isolated QA environment.
 
+### Local development and integration testing
+
+Run integration checks from a local checkout of `main` against synthetic data in the separate QA Firebase project before manually publishing to production in Netlify.
+
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.

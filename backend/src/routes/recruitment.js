@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { doc, getDoc, updateDoc } = require("firebase/firestore")
+const { doc, getDoc, updateDoc } = require("../firestore")
 const { db } = require("../../netlify/functions/firebase-config")
 
 const getRecruitmentInfo = async (req, res) => {

@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { collection, getDocs, writeBatch, doc, deleteDoc } = require("firebase/firestore")
+const { collection, getDocs, writeBatch, doc, deleteDoc } = require("../firestore")
 const { db } = require("../../netlify/functions/firebase-config")
 
 const addCountries = async (req, res) => {
